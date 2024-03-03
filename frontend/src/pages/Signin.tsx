@@ -7,6 +7,7 @@ import { Header } from "../components/Header";
 import axios from "axios";
 // import ReactModal from "react-modal";
 import { useEffect, useState } from "react";
+import { Spinner } from "../components/Spinner";
 
 export function Signin(){
     const navigate = useNavigate()
@@ -24,6 +25,19 @@ export function Signin(){
     const [email, setEmail] = useState("");
    
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    if (loading ) {
+      return <div>
+      
+      
+          <div className="h-screen flex flex-col justify-center">
+              
+              <div className="flex justify-center">
+              <span> Please wait..</span>  <Spinner />
+              </div>
+          </div>
+      </div>
+  }
     return <div>
         <Header  name2="Get Started"  route2={()=>{navigate('/signup')}}/>
         <div className="flex  justify-center  h-screen">
@@ -35,6 +49,7 @@ export function Signin(){
                 <InputBox onchange={(e:any) => {setPassword(e.target.value) }} name="Password" placeholder="Enter you password"/>
 
                 <Button name="SignIn" onclick={ async ()=>{
+                      await setLoading(true)
                     const response =  await axios.post("https://medium-app.sahupravin960.workers.dev/api/v1/signin",
                     {
                         email,

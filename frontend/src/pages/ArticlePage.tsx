@@ -15,24 +15,38 @@ export function ArticlePage(){
     const [blog,setBlog]= useState(null)
     const id = searchParams.get("id");
     console.log(id)
-    useEffect(()=>{
-        axios.get("https://medium-app.sahupravin960.workers.dev/api/v1/blog/" + id,{
+    useEffect(() => {
+        const cachedBlog = localStorage.getItem(`blog_${id}`);
+        if (cachedBlog) {
+            setBlog(JSON.parse(cachedBlog));
+            setLoading(false);
+        } else {
+            fetchBlog();
+        }
+    }, [id, token]);
+
+    const fetchBlog = () => {
+        axios.get(`https://medium-app.sahupravin960.workers.dev/api/v1/blog/${id}`, {
             headers: {
-                Authorization: 'Bearer ' + token //the token is a variable which holds the token
+                Authorization: 'Bearer ' + token
             }
         })
-        .then(resp =>{
-            
-            setBlog(resp.data.blog)
-            setLoading(false)
-            
+        .then(resp => {
+            const blogData = resp.data.blog;
+            setBlog(blogData);
+            localStorage.setItem(`blog_${id}`, JSON.stringify(blogData));
+            setLoading(false);
         })
-    },[])
+        .catch(error => {
+            console.error("Error fetching article:", error);
+            setLoading(false);
+        });
+    };
 const navigate = useNavigate()
 
 if (loading || !blog) {
     return <div>
-        <Header name2="Write" route2={()=>{navigate('/write')}}/>
+        <Header name2="Write" route2={()=>{navigate('/postStories')}}/>
     
         <div className="h-screen flex flex-col justify-center">
             
@@ -43,7 +57,7 @@ if (loading || !blog) {
     </div>
 }
     return <div className=" break-words"> 
-        <div><Header name2="Write" route2={()=>{navigate('/write')}}/></div>
+        <div><Header name2="Write" route2={()=>{navigate('/postStories')}}/></div>
         <div className=" ">
         
            {blog && ( // Check if blog is not null before rendering

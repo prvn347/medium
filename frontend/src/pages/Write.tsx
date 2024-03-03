@@ -3,6 +3,7 @@ import {   useState } from "react";
 import { Header } from "../components/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "../components/Spinner";
 
 export function Write(){
    
@@ -20,7 +21,19 @@ export function Write(){
     // }, []);
     const [title,setTitle] = useState("")
     const [content, setContent] = useState("");
-
+    const [loading, setLoading] = useState(false);
+    if (loading ) {
+      return <div>
+      
+      
+          <div className="h-screen flex flex-col justify-center">
+              
+              <div className="flex justify-center">
+              <span> Posting..</span>  <Spinner />
+              </div>
+          </div>
+      </div>
+  }
 
    
 // const navigate  = useNavigate()
@@ -28,6 +41,7 @@ export function Write(){
         <div>
             <div className="  ">
                <Header name2="Publish" route2={ async ()=>{
+                  await setLoading(true)
                  
                 if(token){
                     
