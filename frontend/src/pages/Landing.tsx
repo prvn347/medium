@@ -16,7 +16,7 @@ route2={()=>{navigate('/signin')}}/>
             
            
         </div>
-        <div className="bg-yello h-screen ">
+        <div className="bg-yello h-screen dark:bg-black dark:text-white ">
         <div className="flex flex-col justify-around px-8">
                 <div className=" font-glory text-7xl font-normal p-3 px-6 " >
                     Stay curious.

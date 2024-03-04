@@ -37,8 +37,12 @@ export function MyBlogs(){
         return <div>
                             <Header name1="My blogs" route1={()=>{navigate('/myblogs')}} name2="Write" route2={() => {navigate("/postStories")}} />
 
-            <div  className="flex justify-center">
+            <div  className="flex justify-center dark:bg-black ">
                 <div>
+                    <BlogSkeleton />
+                    <BlogSkeleton />
+                    <BlogSkeleton />
+                    <BlogSkeleton />
                     <BlogSkeleton />
                     <BlogSkeleton />
                     <BlogSkeleton />
@@ -67,7 +71,7 @@ export function MyBlogs(){
            }} className=" cursor-pointer bg-red-500 flex justify-center">log out</div>
             
             </div>
-            <div className="flex flex-col items-center"> {/* Ensure PostCard components are stacked vertically */}
+            <div className="flex flex-col items-center dark:bg-black h-screen"> {/* Ensure PostCard components are stacked vertically */}
                 <span className="font-glory text-2xl font-semibold p-3">My Blogs</span>
                 {/* Render each PostCard component inside a block-level container */}
                 {blogs.map((blog) => (

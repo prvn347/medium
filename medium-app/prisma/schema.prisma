@@ -27,6 +27,7 @@ model Post {
   title     String
   content   String
   published Boolean  @default(false)
+  publishedAt DateTime @default(dbgenerated("CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Kolkata'"))
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
 }

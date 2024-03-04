@@ -56,14 +56,14 @@ if (loading || !blog) {
         </div>
     </div>
 }
-    return <div className=" break-words"> 
+    return <div className=" break-words dark:bg-black h-screen"> 
         <div><Header name2="Write" route2={()=>{navigate('/postStories')}}/></div>
         <div className=" ">
         
            {blog && ( // Check if blog is not null before rendering
                     <Article 
                                         // @ts-ignore
-                        name={blog.author.name} title={blog.title} content={blog.content} 
+                        name={blog.author.name} title={blog.title} content={blog.content} date={blog.publishedAt}
                     />//you shouldn't use ts ignore
                 )}
         </div>

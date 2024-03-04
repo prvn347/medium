@@ -40,14 +40,18 @@ try {
             authorId:userId,
             title:body.title,
            content: body.content,
-           published:true
+           published:true,
+           
         },
         select:{
             title:true,
-            author:true,
+            author:{select:{
+                name:true
+            }},
             content:true,
             id:true,
-            published:true
+            published:true,
+            publishedAt:true
 
         }
        
@@ -113,7 +117,9 @@ try {
             authorId:userId
         },
         select:{
-            author:true,
+            author:{select:{
+                name:true
+            }},
             title:true,
             content:true,
             id:true
@@ -142,7 +148,9 @@ try {
         select:{
             content:true,
             title:true,
-            author:true,
+            author:{select:{
+                name:true
+            }},
             id:true
 
     }});
@@ -171,7 +179,8 @@ blogRouter.get('/blog/:id',async (c)=>{
         select:{
             author:true,
             title:true,
-            content:true
+            content:true,
+            publishedAt:true
         }
 	});
 

@@ -37,9 +37,9 @@ export function Write(){
 
    
 // const navigate  = useNavigate()
-    return <div>
-        <div>
-            <div className="  ">
+    return <div className="dark:bg-black">
+        <div className="">
+            <div className=" dark:bg-black ">
                <Header name2="Publish" route2={ async ()=>{
                   await setLoading(true)
                  
@@ -70,9 +70,9 @@ export function Write(){
                  
                }}/>
             </div>
-            <section className=" mt-4 ml-1 mr-1 sm:mt-10 ml-3 mr-3">
-            <div className=" px-3 ml-1 mr-1 sm: px-10 ml-3 mr-3  ">
-                <div className="    ">
+            <section className=" mt-4 ml-1 mr-1 sm:mt-10 ml-3 mr-3 dark:bg-black  ">
+            <div className=" px-3 ml-1 mr-1 sm: px-10 ml-3 mr-3   ">
+                <div className="  dark:bg-black   ">
                     <div className="border-s-4 h-12 absolute "></div>
                     {/* @ts-ignore */}
                     <input
@@ -82,9 +82,9 @@ export function Write(){
               onChange={(e)=>{
                 setTitle(e.target.value)
                 }}
-              className=" w-screen text-4xl font-serif focus:outline-none block px-3"
+              className=" w-screen max-w-sm sm:max-w-2xl  text-4xl font-serif focus:outline-none block px-3 dark:bg-black"
             />
-                <div className="border-s-4 h-8 absolute "></div>
+                <div className="border-s-4 h-8 absolute dark:bg-black "></div>
  {/* @ts-ignore */}
  <textarea placeholder="Tell your story..."
  rows={250}
@@ -95,7 +95,7 @@ export function Write(){
                  
               
                 
-              className=" resize-none break-words  w-full text-2xl font-serif focus:outline-none block px-3"
+              className=" dark:bg-black resize-none break-words  w-full text-2xl font-serif focus:outline-none block px-3"
             />                
                 </div>
             </div>

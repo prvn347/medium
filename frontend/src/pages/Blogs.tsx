@@ -37,8 +37,12 @@ export function Blogs(){
         return <div>
            <Header name1="My blogs" route1={()=>{navigate('/myblogs')}} name2="Write" route2={() => {navigate("/postStories")}} />
 
-            <div  className="flex justify-center">
+            <div  className="flex justify-center dark:bg-black">
                 <div>
+                    <BlogSkeleton />
+                    <BlogSkeleton />
+                    <BlogSkeleton />
+                    <BlogSkeleton />
                     <BlogSkeleton />
                     <BlogSkeleton />
                     <BlogSkeleton />
@@ -48,13 +52,13 @@ export function Blogs(){
             </div>
         </div>
     }
-    return (       <><div>
+    return (       <div  className=" overflow-hidden">
         <Header name1="My blogs" route1={() => { navigate('/myblogs'); } } name2="Write" route2={() => { navigate("/postStories"); } } />
         <div onClick={() => {
             localStorage.removeItem("token");
             navigate("/signin");
-        } } className="cursor-pointer bg-red-500 flex justify-center">log out</div>
-            <div>
+        } } className="cursor-pointer bg-red-500 flex justify-center ">log out</div>
+            <div className=" dark:bg-gray-900 " >
                 {blogs.map((blog) => (
                     // @ts-ignore
                     <div key={blog.id} className="flex justify-center"> {/* Use a block-level container to ensure each PostCard appears on a new line */}
@@ -67,7 +71,7 @@ export function Blogs(){
                 ))}
 
             </div>
-        </div></>
+        </div>
 
         
     );

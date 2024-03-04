@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import { TextButton } from "./TextButton";
+import ThemeSwitcher from '../components/Switcher';
 
 interface name{
     name1?:string,
@@ -13,7 +14,7 @@ export function Header({ name1, name2, route1, route2 }:name) {
 
   return (
    
-    <div className="border-b flex bg-beige justify-between px-10 py-4">
+    <div className=" border-b flex  bg-beige justify-between px-10 py-4 sticky dark:bg-yello">
     <div className="flex items-center">
             <a href="/">
               <svg
@@ -35,18 +36,20 @@ export function Header({ name1, name2, route1, route2 }:name) {
               </svg>
             </a>
             <span
-              className="text-center font-glory text-3xl cursor-pointer"
+              className="text-center font-glory text-md sm:text-3xl  cursor-pointer"
               onClick={() => {
                 navigate("/");
               }}
             >
-              &nbsp;sastaMedium
+              &nbsp;Medium
             </span>
+
           </div>
-    <div>
-    <div className="flex items-center">
-            <TextButton link={name1} onclick={route1} subheading={""} />
-            <Button name={name2} onclick={route2} />
+    <div className="">
+    <div className="flex items-center ">
+            <TextButton className={"text-sm sm:text-lg"} link={name1} onclick={route1} subheading={""} />
+            <Button className={" w-24 sm:w-32 "} name={name2} onclick={route2} />
+            <ThemeSwitcher/>
           </div>
     </div>
 </div>
