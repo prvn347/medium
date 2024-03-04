@@ -118,17 +118,19 @@ try {
         },
         select:{
             author:{select:{
+                id:true,
                 name:true
             }},
             title:true,
             content:true,
-            id:true
+            id:true,
+            authorId:true
 
         }
         
     })
     return c.json({
-        userBlogs:blogs
+        userBlogs:blogs,userId:userId
     })
 } catch (error) {
     c.json({
@@ -149,13 +151,16 @@ try {
             content:true,
             title:true,
             author:{select:{
+                id:true,
                 name:true
             }},
-            id:true
+            id:true,
+            authorId:true
+        
 
     }});
     return c.json({
-        userBlogs:blogs
+        userBlogs:blogs,userId:userId
     })
 } catch (error) {
     c.json({
@@ -163,6 +168,27 @@ try {
     })
     
 }
+
+})
+blogRouter.delete("blog/rm", async (c)=>{
+    const body = await c.req.json()
+
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+    const userId:string = c.get('userId')
+
+    try {
+        const deletedBlog = await prisma.post.deleteMany({
+            where:{
+                id:body.id
+            },
+        })
+        return c.json({deleted:deletedBlog})
+    } catch (error) {
+
+        c.json({msg:error})
+    }
 
 })
 blogRouter.get('/blog/:id',async (c)=>{

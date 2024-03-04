@@ -1,5 +1,8 @@
 import { Link} from "react-router-dom";
 import { ProfileName } from "./ProfileName";
+// import { Button } from "./Button";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
 
 
 
@@ -7,11 +10,12 @@ interface content{
 title :string,
 content :string,
 userName:string,
-id:string
+id:string,
+
 }
 export function PostCard( {title,content,userName,id}:content){
 
-  
+  // const token = localStorage.getItem('token')
     const maxLength = 100; // Maximum length of the content before truncation
 // const navigate = useNavigate()
     // Function to truncate the text content if it's too long
@@ -22,12 +26,21 @@ export function PostCard( {title,content,userName,id}:content){
         return text;
       }
     };
+   
+  
+// const [showBtn,setShowBtn] = useState(false)
+
+
+
+
 
 
     return  <Link to={"/article?id=" + id}>
     <div className="p-4 border-b border-slate-200 pb-4 w-screen max-w-screen-md cursor-pointer dark:bg-black dark:text-white ">
-        <div className="flex">
-        <ProfileName name={userName}/>
+        <div className="flex justify-between">
+        <ProfileName name={userName}/> 
+
+
           
            
         </div>

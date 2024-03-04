@@ -26,9 +26,9 @@ export function Write(){
       return <div>
       
       
-          <div className="h-screen flex flex-col justify-center">
+          <div className="h-screen flex flex-col justify-center dark:bg-black">
               
-              <div className="flex justify-center">
+              <div className="flex justify-center dark:bg-black">
               <span> Posting..</span>  <Spinner />
               </div>
           </div>
@@ -37,7 +37,7 @@ export function Write(){
 
    
 // const navigate  = useNavigate()
-    return <div className="dark:bg-black">
+    return <div className="dark:bg-black overflow-hidden ">
         <div className="">
             <div className=" dark:bg-black ">
                <Header name2="Publish" route2={ async ()=>{

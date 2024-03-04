@@ -53,10 +53,9 @@ export function MyBlogs(){
         </div>
     }
 
-    return (
-        <div>
+    return (<div className=" overflow-hidden  break-words">
 
-            <div>
+            <div >
                 <Header name1="All blogs" route1={()=>{navigate("/blogs")}} name2="Write" route2={() => {navigate("/postStories")}}  />
                 <div  onClick={()=>{
              

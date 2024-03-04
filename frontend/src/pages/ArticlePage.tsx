@@ -48,9 +48,9 @@ if (loading || !blog) {
     return <div>
         <Header name2="Write" route2={()=>{navigate('/postStories')}}/>
     
-        <div className="h-screen flex flex-col justify-center">
+        <div className="h-screen flex flex-col justify-center dark:bg-black">
             
-            <div className="flex justify-center">
+            <div className="flex justify-center dark:bg-black">
                 <Spinner />
             </div>
         </div>
@@ -62,7 +62,8 @@ if (loading || !blog) {
         
            {blog && ( // Check if blog is not null before rendering
                     <Article 
-                                        // @ts-ignore
+                    // @ts-ignore
+                              id={id}          // @ts-ignore
                         name={blog.author.name} title={blog.title} content={blog.content} date={blog.publishedAt}
                     />//you shouldn't use ts ignore
                 )}

@@ -30,9 +30,9 @@ export function Signin(){
       return <div>
       
       
-          <div className="h-screen flex flex-col justify-center">
+          <div className="h-screen flex flex-col justify-center dark:bg-black">
               
-              <div className="flex justify-center">
+              <div className="flex justify-center dark:bg-black">
               <span> Please wait..</span>  <Spinner />
               </div>
           </div>
