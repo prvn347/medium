@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProfileName } from "./ProfileName";
 
 
@@ -24,24 +24,26 @@ const navigate = useNavigate()
     };
 
 
-    return <div className="block">
-        
-<a href="#"
- onClick={()=>{navigate("/article?id=" + id)}}
-  className="block w-screen p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100  ">
-
-<ProfileName name={userName}/>
-        <div className=" pt-3">
-                
-                <span className="font-bold font-merat text-2xl">{title}</span>
-            </div>
-            <div className=" ">
-                <p className="font-normal text-md font-merat" >{truncateText(content)}</p>
-            </div>
+    return  <Link to={"/article?id=" + id}>
+    <div className="p-4 border-b border-slate-200 pb-4 w-screen max-w-screen-md cursor-pointer">
+        <div className="flex">
+        <ProfileName name={userName}/>
+          
            
-</a>
+        </div>
+        <div className="text-xl font-semibold pt-2">
+        <span className="font-bold font-merat text-2xl">{title}</span>
 
-        
+        </div>
+        <div className="text-md font-thin">
+        <p className="font-normal text-md font-merat" >{truncateText(content)}</p>
+
+        </div>
+        <div className="text-slate-500 text-sm font-thin pt-4">
+            {`${Math.ceil(content.length / 100)} minute(s) read`}
+        </div>
     </div>
+</Link>
+     
 
 }

@@ -4,11 +4,10 @@ import { PostCard } from "../components/PostCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BlogSkeleton } from "../components/Skeleton";
-// import { Button } from "../components/Button";
+
 
 export function Blogs(){
     const navigate = useNavigate()
-
     const token = localStorage.getItem("token");
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -36,7 +35,7 @@ export function Blogs(){
 
     if (loading) {
         return <div>
-                            <Header name1="My blogs" route1={()=>{navigate('/myblogs')}} name2="Write" route2={() => {navigate("/postStories")}} />
+           <Header name1="My blogs" route1={()=>{navigate('/myblogs')}} name2="Write" route2={() => {navigate("/postStories")}} />
 
             <div  className="flex justify-center">
                 <div>
@@ -49,36 +48,27 @@ export function Blogs(){
             </div>
         </div>
     }
-    return (
-        <div>
+    return (       <><div>
+        <Header name1="My blogs" route1={() => { navigate('/myblogs'); } } name2="Write" route2={() => { navigate("/postStories"); } } />
+        <div onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/signin");
+        } } className="cursor-pointer bg-red-500 flex justify-center">log out</div>
             <div>
-                <Header name1="My blogs" route1={()=>{navigate('/myblogs')}} name2="Write" route2={() => {navigate("/postStories")}} />
-                <div onClick={()=>{
-             
-
-           
-             // Clear the authentication token from localStorage
-             localStorage.removeItem("token");
-             // Redirect the user to the sign-in page
-             navigate("/signin");
- 
-            
-           }} className="cursor-pointer bg-red-500 flex justify-center">log out</div>
-            </div>
-            <div className="flex flex-col items-center"> {/* Ensure PostCard components are stacked vertically */}
-                <span className="font-glory text-2xl font-semibold p-3">All Blogs</span>
-                {/* Render each PostCard component inside a block-level container */}
                 {blogs.map((blog) => (
                     // @ts-ignore
-                    <div key={blog.id} className=""> {/* Use a block-level container to ensure each PostCard appears on a new line */}
-                        
+                    <div key={blog.id} className="flex justify-center"> {/* Use a block-level container to ensure each PostCard appears on a new line */}
 
 
-                                            {/* @ts-ignore */}
-                        <PostCard id={blog.id} title={blog.title} content={blog.content} userName={blog.author.name || "Anonymous"}/>
+
+                        {/* @ts-ignore */}
+                        <PostCard id={blog.id} title={blog.title} content={blog.content} userName={blog.author.name || "Anonymous"} />
                     </div>
                 ))}
+
             </div>
-        </div>
+        </div></>
+
+        
     );
 }
