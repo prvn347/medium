@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { ProfileName } from "./ProfileName";
 
 
@@ -13,7 +13,7 @@ export function PostCard( {title,content,userName,id}:content){
 
   
     const maxLength = 100; // Maximum length of the content before truncation
-const navigate = useNavigate()
+// const navigate = useNavigate()
     // Function to truncate the text content if it's too long
     const truncateText = (text: string) => {
       if (text.length > maxLength) {
