@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { Article } from "../components/Article"
+// import { Article } from "../components/Article"
 import { Header } from "../components/Header"
 import { useEffect, useState } from "react";
 import axios from "axios";

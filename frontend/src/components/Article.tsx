@@ -1,7 +1,7 @@
-import axios from "axios";
-import { Button } from "./Button";
+// import axios from "axios";
+// import { Button } from "./Button";
 import { ProfileName } from "./ProfileName";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface ArticleProps {
     name: string;
@@ -11,9 +11,9 @@ interface ArticleProps {
     id:string
 }
 
-export function Article({ title, content, name ,date,id}: ArticleProps) {
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
+export function Article({ title, content, name ,date}: ArticleProps) {
+    // const token = localStorage.getItem('token')
+    // const navigate = useNavigate()
     // const handleBtn = async () => {
     //     try {
     //          await axios.delete(
