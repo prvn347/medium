@@ -8,8 +8,9 @@ interface name{
     name2?:string,
     route1?:any,
     route2?:any
+    newdiv?:any
 }
-export function Header({ name1, name2, route1, route2 }:name) {
+export function Header({ name1, name2, route1, route2,newdiv }:name) {
   const navigate = useNavigate();
 
   return (
@@ -49,6 +50,7 @@ export function Header({ name1, name2, route1, route2 }:name) {
     <div className="flex items-center ">
             <TextButton className={"text-sm sm:text-lg"} link={name1} onclick={route1} subheading={""} />
             <Button className={" w-24 sm:w-32 "} name={name2} onclick={route2} />
+            {newdiv}
             <ThemeSwitcher/>
           </div>
     </div>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { PostCard } from "../components/PostCard";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import { BlogSkeleton } from "../components/Skeleton";
 
@@ -32,10 +32,43 @@ export function Blogs(){
             setLoading(false)
         })
     }, []);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [list] = useState(["My blogs","Write"]);
+    const dropdownRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event: { target: any; }) => {
+        // @ts-ignore
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  
+    const toggleDropDown = () => {
+      setDropdownOpen(!isDropdownOpen);
+    };
+    const handleItemClicks = [
+        () => navigate("/myblogs"),
+        () => navigate("/postStories"),
+        // Add more handlers for additional items if needed
+      ];
+    
+    const DropDownlist = useMemo(() => {
+        return list.map((el,index) => (
+            <div key={el} onClick={handleItemClicks[index]}  className="cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white font-merat font-semibold">
+              {el} 
+            </div>
+          ));   }, [list,handleItemClicks]);
 
     if (loading) {
         return <div>
-           <Header name1="My blogs" route1={()=>{navigate('/myblogs')}} name2="Write" route2={() => {navigate("/postStories")}} />
+           <Header  name2="Write" route2={() => { navigate("/postStories");}}   />
 
             <div  className="flex justify-center dark:bg-black">
                 <div>
@@ -53,7 +86,14 @@ export function Blogs(){
         </div>
     }
     return (       <div  className=" overflow-hidden">
-        <Header name1="My blogs" route1={() => { navigate('/myblogs'); } } name2="Write" route2={() => { navigate("/postStories"); } } />
+                {/* @ts-ignore */}
+        <Header newdiv={ <div ref={dropdownRef}  className=" relative w-10 h-10 rounded-full bg-black flex items-center justify-center  dark:bg-indigo-400">
+                    <span onClick={toggleDropDown} className=" cursor-pointer text-md text-white dark:text-black ">U</span>
+                    {isDropdownOpen && (
+        <div className="absolute top-3 right-4 mt-8 w-48 bg-white border rounded-lg shadow-lg z-10">
+          {DropDownlist}
+        </div>
+      )}</div>} name2="Write" route2={() => { navigate("/postStories"); } } />
         <div onClick={() => {
             localStorage.removeItem("token");
             navigate("/signin");

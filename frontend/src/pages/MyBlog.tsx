@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { PostCard } from "../components/PostCard";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import { BlogSkeleton } from "../components/Skeleton";
 
@@ -21,6 +21,39 @@ export function MyBlogs(){
 
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [list] = useState(["All blogs","Write"]);
+    const dropdownRef = useRef();
+
+    useEffect(() => {
+      const handleClickOutside = (event: { target: any; }) => {
+          // @ts-ignore
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          setDropdownOpen(false);
+        }
+      };
+  
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
+    const toggleDropDown = () => {
+      setDropdownOpen(!isDropdownOpen);
+    };
+    const handleItemClicks = [
+        () => navigate("/blogs"),
+        () => navigate("/postStories"),
+        // Add more handlers for additional items if needed
+      ];
+    
+    const DropDownlist = useMemo(() => {
+        return list.map((el,index) => (
+            <div key={el} onClick={handleItemClicks[index]}  className="cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              {el}
+            </div>
+          ));   }, [list,handleItemClicks]);
+
     useEffect(() => {
         axios.get("https://medium-app.sahupravin960.workers.dev/api/v1/blog/myblogs", {
             headers: {
@@ -35,7 +68,7 @@ export function MyBlogs(){
     
     if (loading) {
         return <div>
-                            <Header name1="My blogs" route1={()=>{navigate('/myblogs')}} name2="Write" route2={() => {navigate("/postStories")}} />
+                            <Header  name2="Write" route2={() => {navigate("/postStories")}} />
 
             <div  className="flex justify-center dark:bg-black ">
                 <div>
@@ -56,7 +89,14 @@ export function MyBlogs(){
     return (<div className=" overflow-hidden  break-words">
 
             <div >
-                <Header name1="All blogs" route1={()=>{navigate("/blogs")}} name2="Write" route2={() => {navigate("/postStories")}}  />
+                {/* @ts-ignore */}
+                <Header newdiv={ <div ref={dropdownRef} className=" relative w-10 h-10 rounded-full bg-black flex items-center justify-center  dark:bg-indigo-400">
+                    <span onClick={toggleDropDown} className=" cursor-pointer text-md text-white dark:text-black ">U</span>
+                    {isDropdownOpen && (
+        <div className="absolute top-3 right-4 mt-8 w-48 bg-white border rounded-lg shadow-lg z-10">
+          {DropDownlist}
+        </div>
+      )}</div>} name2="Write" route2={() => {navigate("/postStories")}}  />
                 <div  onClick={()=>{
              
 
