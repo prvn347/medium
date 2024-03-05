@@ -5,59 +5,11 @@ import { InputBox } from "../components/Input";
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
 import axios from "axios";
-import { GoogleLogin} from '@react-oauth/google';
 // import ReactModal from "react-modal";
 import { useEffect, useState } from "react";
 import { Spinner } from "../components/Spinner";
 
 export function Signin(){
-  const responseMessage = (response: any) => {
-    console.log(response);
-};
-const errorMessage = (error: void) => {
-    console.log(error);
-};
-// interface Profile {
-//   picture: string;
-//   name: string;
-//   email: string;
-// }
-// const [ user, setUser ] = useState<CodeResponse  | null>();
-// const [ profile, setProfile ] = useState<Profile  | null>();  
-
-// const login = useGoogleLogin({
-//     onSuccess: (codeResponse:CodeResponse) => setUser(codeResponse),
-//     onError: (error) => console.log('Login Failed:', error)
-// });
-
-// useEffect(
-//     () => {
-//         if (user) {
-         
-             
-//             //  @ts-ignore
-//             axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-//                     headers: {  
-//                       //  @ts-ignore
-//                         Authorization: `Bearer ${user.access_token}`,
-//                         Accept: 'application/json'
-//                     }
-//                 })
-//                 .then((res) => {
-//                     setProfile(res.data);
-//                 })
-//                 .catch((err) => console.log(err));
-//         }
-//     },
-//     [ user ]
-// );
-
-// log out function to log the user out of google and set the profile array to null
-// const logOut = () => {
-//     googleLogout();
-//     setProfile(null);
-// };
-
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -92,12 +44,7 @@ const errorMessage = (error: void) => {
             <div className=" flex flex-col justify-center">
             <div className="  rounded-sm w-80 text-center  p-2 px-4 h-max">
                 <Heading name = "Welcome back."/>
-                
                 <div className="mt-12">
-                  <div>
-            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
-        </div>
-        <span className=" font-merat text-md font-semibold">OR</span>
                 <InputBox onchange={(e:any) => {setEmail(e.target.value) }} name="Email" placeholder="Enter you email"/>
                 <InputBox onchange={(e:any) => {setPassword(e.target.value) }} name="Password" placeholder="Enter you password"/>
 
