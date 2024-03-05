@@ -11,36 +11,37 @@ interface ArticleProps {
     id:string
 }
 
-export function Article({ title, content, name ,date,id}: ArticleProps) {
+
+export function AuthArticle({ title, content, name ,date,id}: ArticleProps) {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    // const handleBtn = async () => {
-    //     try {
-    //          await axios.delete(
-    //             `https://medium-app.sahupravin960.workers.dev/api/v1/blog/rm`,
-    //             {
-    //                 headers: {
-    //                     Authorization: 'Bearer ' + token //the token is a variable which holds the token
-    //                 },
-    //                 data: {
-    //                     id:id
-    //                 }
-    //             }
-    //         );
-    //         navigate('/myblogs')
-    //         // Handle successful deletion
-    //     } catch (error) {
-    //         // Handle error
-    //         alert(error)
-    //     }
-    // };
+    const handleBtn = async () => {
+        try {
+             await axios.delete(
+                `https://medium-app.sahupravin960.workers.dev/api/v1/blog/rm`,
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + token //the token is a variable which holds the token
+                    },
+                    data: {
+                        id:id
+                    }
+                }
+            );
+            navigate('/myblogs')
+            // Handle successful deletion
+        } catch (error) {
+            // Handle error
+            alert(error)
+        }
+    };
     
     return (
         <div className="max-w-xl mx-auto px-4 dark:bg-black dark:text-white ">
             <div className="my-4 md:my-8"></div>
             <div className="flex justify-between items-center">
             <h1 className="text-3xl md:text-4xl font-merat font-semibold">{title}</h1>
-            {/* <Button name="Delete" className="text-sm w-22" onclick={handleBtn} /> */}
+            <Button name="Delete" className="text-sm w-22" onclick={handleBtn} />
 
             </div>
             <span className="text-sm font-mono ">Published at:{date}</span>

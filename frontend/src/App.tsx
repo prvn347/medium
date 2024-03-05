@@ -9,6 +9,7 @@ import { Blogs } from './pages/Blogs'
 import { Write } from './pages/Write'
 import { ArticlePage } from './pages/ArticlePage'
 import { MyBlogs } from './pages/MyBlog'
+import { AuthArticlePage } from './pages/AuthArticlePage'
 
 function App() {
 
@@ -23,7 +24,9 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path='/postStories' element = { <Write/>}/>
-          <Route path='/article' element = {<ArticlePage/>}/>   
+          <Route path='/article' element = {<ArticlePage/>}/>
+          <Route path='/authArticle' element = {<AuthArticlePage/>}/>   
+   
           <Route path='/myblogs' element = {<MyBlogs/>}/>
         </Routes>
       </BrowserRouter>

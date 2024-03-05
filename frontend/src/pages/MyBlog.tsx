@@ -80,7 +80,7 @@ export function MyBlogs(){
 
 
                                             {/* @ts-ignore */}
-                        <PostCard id={blog.id} title={blog.title} content={blog.content} userName={blog.author.name}/>
+                        <PostCard route="authArticle" id={blog.id} title={blog.title} content={blog.content} userName={blog.author.name}/>
                     </div>
                 ))}
             </div>

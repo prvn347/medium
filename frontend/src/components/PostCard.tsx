@@ -11,9 +11,10 @@ title :string,
 content :string,
 userName:string,
 id:string,
+route:string
 
 }
-export function PostCard( {title,content,userName,id}:content){
+export function PostCard( {title,content,userName,id,route}:content){
 
   // const token = localStorage.getItem('token')
     const maxLength = 100; // Maximum length of the content before truncation
@@ -35,7 +36,7 @@ export function PostCard( {title,content,userName,id}:content){
 
 
 
-    return  <Link to={"/article?id=" + id}>
+    return  <Link to={`/${route}?id=${id}`}>
     <div className="p-4 border-b border-slate-200 pb-4 w-screen max-w-screen-md cursor-pointer dark:bg-black dark:text-white ">
         <div className="flex justify-between">
         <ProfileName name={userName}/> 

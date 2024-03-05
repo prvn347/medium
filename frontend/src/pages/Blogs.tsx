@@ -66,7 +66,7 @@ export function Blogs(){
 
 
                         {/* @ts-ignore */}
-                        <PostCard id={blog.id} title={blog.title} content={blog.content} userName={blog.author.name || "Anonymous"} />
+                        <PostCard route="article" id={blog.id} title={blog.title} content={blog.content} userName={blog.author.name || "Anonymous"} />
                     </div>
                 ))}
 
